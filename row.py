@@ -81,7 +81,7 @@ class Row:
         return str(self[1:] + self[0:1])
 
     def __repr__(self):
-        return 'R%s' % str(self)
+        return 'Raw%s' % str(self)
 
 
 if __name__ == '__main__':
