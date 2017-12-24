@@ -59,7 +59,7 @@ class RationalNumber:
         if reNum.num:
             reNum.num, reNum.den = reNum.den, reNum.num
         else:
-            return reNum
+            raise ZeroDivisionError
         return reNum
 
     def __itruediv__(self, other):
