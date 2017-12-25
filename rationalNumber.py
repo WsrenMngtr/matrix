@@ -1,3 +1,12 @@
+def gcd(a, b):
+    (a, b) = (a, b) if a > b else (b, a)
+    while True:
+        if a % b == 0:
+            return b
+        else:
+            a %= b
+            a, b = b, a
+
 class RationalNumber:
     def __init__(self, numerator, denominator=1):
         if isinstance(numerator, RationalNumber):
@@ -10,22 +19,19 @@ class RationalNumber:
 
     def toSimple(self):
         if self.den < 0:
-            self.num *= -1
-            self.den *= -1
+            self.bothMul(-1)
         if not self.num:
             self.den = 1
             return
-        coe = 2
-        while coe <= abs(min(self.num, self.den)):
-            if self.num % coe == 0 and self.den % coe == 0:
-                self.num //= coe
-                self.den //= coe
-            else:
-                coe += 1
+        self.bothTruediv(gcd(self.num, self.den))
 
     def bothMul(self, other):
         self.num *= other
         self.den *= other
+        
+    def bothTruediv(self, other):
+        self.num //= other
+        self.den //= other
 
     def copy(self):
         return RationalNumber(self.num, self.den)
@@ -103,6 +109,6 @@ class RationalNumber:
 
 
 if __name__ == '__main__':
-    tr = RationalNumber(2, 2)
-    tr.toSimple()
+    tr = RationalNumber(77, 28)
+    '''tr.toSimple()'''
     print(tr)
